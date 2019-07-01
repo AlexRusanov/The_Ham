@@ -279,9 +279,50 @@
     margin: 100px 0;
 }
 
-.work-gallery-item:hover {
-
+.work-gallery-item {
+    width: 285px;
+    height: 208px;
 }
+
+/*Amazing Work Section Img Hover*/
+.work-gallery-item-hover {
+    width: 285px;
+    height: 208px;
+    box-sizing: border-box;
+    border-top: 3px solid #18cfab;
+    font-size: 14px;
+    padding-top: 45px;
+    padding-bottom: 50px;
+}
+
+.gallery-item-hover-link {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background: url("../img/Amazing_work/hover_icons/link.png") no-repeat center;
+    border: 1px solid #18cfab;
+}
+
+.gallery-item-hover-zoom {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #18cfab url("../img/Amazing_work/hover_icons/zoom.png") no-repeat center;
+}
+
+.pad-t30-b12 {
+    padding-top: 30px;
+    padding-bottom: 12px;
+}
+
+.gallery-item-hover-text {
+    font-weight: 300;
+    color: #b6b8b8;
+}
+/*Amazing Work Section Img Hover*/
 
 .load-more-btn {
     display: inline-block;
@@ -294,6 +335,7 @@
     font-size: 14px;
     font-weight: 700;
     background-color: #18cfab;
+    cursor: pointer;
 }
 
 .fa-plus {
