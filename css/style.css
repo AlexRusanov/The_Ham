@@ -239,6 +239,7 @@
 
 .amazing-work-section {
     background-color: #f8fcfe;
+    padding-bottom: 100px;
 }
 
 .amazing-work-tabs {
@@ -276,7 +277,7 @@
 .amazing-work-gallery {
     display: flex;
     flex-wrap: wrap;
-    margin: 100px 0;
+    margin-top: 100px;
 }
 
 .work-gallery-item {
@@ -300,6 +301,7 @@
     width: 40px;
     height: 40px;
     box-sizing: border-box;
+    margin-right: 5px;
     border-radius: 50%;
     background: url("../img/Amazing_work/hover_icons/link.png") no-repeat center;
     border: 1px solid #18cfab;
@@ -330,7 +332,7 @@
     height: 60px;
     line-height: 60px;
     border-radius: 3px;
-    margin-bottom: 100px;
+    margin-top: 100px;
     color: #fff;
     font-size: 14px;
     font-weight: 700;
@@ -340,4 +342,72 @@
 
 .fa-plus {
     margin-right: 15px;
+}
+
+.breaking-news-section {
+    padding-bottom: 133px;
+}
+
+.breaking-news-articles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 36px;
+    grid-row-gap: 45px;
+    text-align: left;
+}
+
+.news-articles-item {
+    position: relative;
+    font-size: 0;
+}
+
+.news-articles-item:hover .articles-item-date {
+    background-color: #18cfab;
+}
+
+.news-articles-item:hover .item-title-text {
+    color: #18cfab;
+}
+
+.articles-item-date {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 15px 20px;
+    background-color: #203e38;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+}
+
+.item-date-month {
+    display: block;
+    margin-top: 8px;
+}
+
+.articles-item-title {
+    border: 1px solid #ebebeb;
+    color: #f8fcfe;
+}
+
+.item-title-text {
+    margin: 15px 0 15px 15px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #717171;
+}
+
+.item-title-author {
+    margin-bottom: 12px;
+    margin-left: 19px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #808080;
+}
+
+.item-title-comment {
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid #808080;
 }
