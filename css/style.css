@@ -411,3 +411,74 @@
     padding-left: 10px;
     border-left: 1px solid #808080;
 }
+
+.what-people-say {
+    background: url("../img/Sections background/section-3.jpg") fixed no-repeat;
+}
+
+.people-say-comment {
+    position: relative;
+    margin-top: 73px;
+    font-size: 16px;
+    font-weight: 300;
+    color: #8a9295;
+}
+
+.people-say-comment:before {
+    content: url("../img/what_people_say/quotes.png");
+    position: absolute;
+    top: -73px;
+    left: 560px;
+}
+
+.people-say-author {
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 37px;
+    color: #a3a7a8;
+}
+
+.people-say-name {
+    display: block;
+    font-size: 16px;
+    margin-top: 43px;
+    margin-bottom: 15px;
+}
+
+.people-say-photo {
+    display: inline-block;
+    width: 135px;
+    height: 135px;
+    border-radius: 50%;
+    border: 5px solid #18cfab;
+    box-shadow: 0px 0px 5px 10px rgba(24,207,171,0.3);
+}
+
+.photo-1 {
+    background: url("../img/what_people_say/what-people-say-1.png") no-repeat center;
+    background-size: contain;
+}
+
+.photo-2 {
+    background: url("../img/what_people_say/what-people-say-2.png") no-repeat center;
+    background-size: contain;
+}
+
+.photo-3 {
+    background: url("../img/what_people_say/what-people-say-3.png") no-repeat center;
+    background-size: contain;
+}
+
+.photo-4 {
+    background: url("../img/what_people_say/what-people-say-4.png") no-repeat center;
+    background-size: contain;
+}
+
+.carousel-photo {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    /*border: 2px solid #18cfab;*/
+    box-shadow: 0px 0px 5px 3px rgba(24,207,171,0.3);
+}
