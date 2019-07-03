@@ -185,9 +185,5 @@ loadMoreBtn.onclick = (event) => {
 //     this.replaceChild(hoveredImg, workGalleryItemHover);
 //     hoveredImg = null;
 // });
-//Carousel
-$(document).ready(function(){
-    $('.people-say-carousel').slick({
 
-});
-});
+//Carousel

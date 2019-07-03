@@ -449,6 +449,7 @@
     display: inline-block;
     width: 135px;
     height: 135px;
+    margin-bottom: 60px;
     border-radius: 50%;
     border: 5px solid #18cfab;
     box-shadow: 0px 0px 5px 10px rgba(24,207,171,0.3);
@@ -472,6 +473,10 @@
 .photo-4 {
     background: url("../img/what_people_say/what-people-say-4.png") no-repeat center;
     background-size: contain;
+}
+
+.people-say-carousel {
+
 }
 
 .carousel-photo {
