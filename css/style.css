@@ -536,3 +536,16 @@
     border-right: 1px solid #bbbbbb;
     transform: rotate(45deg);
 }
+
+.footer {
+    line-height: 100px;
+    font-size: 14px;
+    font-weight: 300;
+    background-color: #22353f;
+    color: #9b9e9f;
+    text-align: center;
+}
+
+.footer-green-text {
+    color: #18cfab;
+}
