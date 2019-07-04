@@ -414,6 +414,12 @@
 
 .what-people-say {
     background: url("../img/Sections background/section-3.jpg") fixed no-repeat;
+    background-size: cover;
+}
+
+.people-say-item {
+    display: none;
+    opacity: 0;
 }
 
 .people-say-comment {
@@ -452,7 +458,7 @@
     margin-bottom: 60px;
     border-radius: 50%;
     border: 5px solid #18cfab;
-    box-shadow: 0px 0px 5px 10px rgba(24,207,171,0.3);
+    box-shadow: 0 0 5px 10px rgba(24,207,171,0.3);
 }
 
 .photo-1 {
@@ -476,14 +482,57 @@
 }
 
 .people-say-carousel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 480px;
+    padding-bottom: 100px;
+    margin: 0 auto;
+}
 
+.carousel-button {
+    cursor: pointer;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #909597;
+}
+
+.carousel-left-button:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 13px;
+    width: 8px;
+    height: 8px;
+    border-left: 1px solid #bbbbbb;
+    border-top: 1px solid #bbbbbb;
+    transform: rotate(-45deg);
 }
 
 .carousel-photo {
-    display: inline-block;
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    /*border: 2px solid #18cfab;*/
-    box-shadow: 0px 0px 5px 3px rgba(24,207,171,0.3);
+    box-shadow: 0 0 5px 3px rgba(24,207,171,0.3);
+}
+
+.carousel-photo.carousel-active-photo {
+    box-sizing: border-box;
+    border: 2px solid #18cfab;
+    margin-bottom: 10px;
+}
+
+.carousel-right-button:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 8px;
+    width: 8px;
+    height: 8px;
+    border-top: 1px solid #bbbbbb;
+    border-right: 1px solid #bbbbbb;
+    transform: rotate(45deg);
 }

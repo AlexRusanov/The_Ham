@@ -187,3 +187,79 @@ loadMoreBtn.onclick = (event) => {
 // });
 
 //Carousel
+const peopleSayCarousel = document.querySelector(".people-say-carousel"),
+      peopleSeyItem = document.querySelectorAll(".people-say-item");
+
+let carouselActivePhoto = document.querySelector(".carousel-photo"),
+    carouselActiveComment = peopleSeyItem[0];
+carouselActivePhoto.classList.add("carousel-active-photo");
+carouselActiveComment.style.display = "block";
+carouselActiveComment.style.opacity = "1";
+
+const hideCarouselComment = () => {
+    carouselActiveComment.style.display = "none";
+    carouselActiveComment.style.opacity = "0";
+};
+
+const showCarouselComment = () => {
+    peopleSeyItem.forEach((elem) => {
+        if (elem.getAttribute("data-photo") === carouselActivePhoto.getAttribute("data-photo")) {
+            carouselActiveComment = elem;
+        }
+    });
+
+    carouselActiveComment.style.display = "block";
+    let opacity = 0;
+    let timerId = setInterval(() => {
+        opacity += 0.1;
+        if (opacity > 0.9) {
+            Math.round(opacity);
+            clearInterval(timerId);
+        }
+        carouselActiveComment.style.opacity = `${opacity}`;
+    }, 50)
+};
+
+const clickOnCarouselButtons = (button) => {
+    button.style.backgroundColor = "#18cfab";
+    button.style.borderColor = "#18cfab";
+    setTimeout(() => {
+        button.style.backgroundColor = "";
+        button.style.borderColor = "";
+    }, 150)
+};
+
+peopleSayCarousel.onclick = (event) => {
+    if (event.target.classList.contains("carousel-left-button")) {
+        if (carouselActivePhoto.previousElementSibling && !carouselActivePhoto.previousElementSibling.classList.contains("carousel-left-button")) {
+            carouselActivePhoto.classList.remove("carousel-active-photo");
+            hideCarouselComment();
+
+            carouselActivePhoto.previousElementSibling.classList.add("carousel-active-photo");
+            carouselActivePhoto = carouselActivePhoto.previousElementSibling;
+            showCarouselComment();
+        }
+        clickOnCarouselButtons(event.target);
+    }
+
+    if (event.target.classList.contains("carousel-right-button")) {
+        if (carouselActivePhoto.nextElementSibling && !carouselActivePhoto.nextElementSibling.classList.contains("carousel-right-button")) {
+            carouselActivePhoto.classList.remove("carousel-active-photo");
+            hideCarouselComment();
+
+            carouselActivePhoto.nextElementSibling.classList.add("carousel-active-photo");
+            carouselActivePhoto = carouselActivePhoto.nextElementSibling;
+            showCarouselComment();
+        }
+        clickOnCarouselButtons(event.target);
+    }
+
+    if (event.target.classList.contains("carousel-photo")) {
+        carouselActivePhoto.classList.remove("carousel-active-photo");
+        hideCarouselComment();
+
+        event.target.classList.add("carousel-active-photo");
+        carouselActivePhoto = event.target;
+        showCarouselComment();
+    }
+};
