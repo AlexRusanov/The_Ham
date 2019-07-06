@@ -131,60 +131,49 @@ loadMoreBtn.onclick = (event) => {
 };
 
 //Work Img hover listener
-// const workGalleryItemHover = document.createElement("div"),
-//       galleryItemHoverLink = document.createElement("div"),
-//       galleryItemHoverZoom = document.createElement("div"),
-//       galleryItemHoverBoldText = document.createElement("p"),
-//       galleryItemHoverText = document.createElement("p");
-//
-// workGalleryItemHover.classList.add("work-gallery-item-hover");
-// galleryItemHoverLink.classList.add("gallery-item-hover-link");
-// galleryItemHoverZoom.classList.add("gallery-item-hover-zoom");
-// galleryItemHoverBoldText.classList.add("green-bold-text", "pad-t30-b12");
-// galleryItemHoverBoldText.innerText = ("CREATIVE DESIGN");
-// galleryItemHoverText.classList.add("gallery-item-hover-text");
-//
-// workGalleryItemHover.appendChild(galleryItemHoverLink);
-// workGalleryItemHover.appendChild(galleryItemHoverZoom);
-// workGalleryItemHover.appendChild(galleryItemHoverBoldText);
-// workGalleryItemHover.appendChild(galleryItemHoverText);
-//
-// let hoveredImg = null;
-//
-// amazingWorkGallery.addEventListener("mouseover", function (event) {
-//     if (hoveredImg) {
-//         return;
-//     }
-//
-//     let target = event.target;
-//
-//     while (target === this) {
-//         if (target === workGalleryItemHover || target.parentNode === workGalleryItemHover || target.tagName === 'div' || target.tagName === 'p') {
-//             break;
-//         }
-//     }
-//
-//     hoveredImg = target;
-//
-//     galleryItemHoverText.innerText = hoveredImg.getAttribute("data-img");
-//     this.replaceChild(workGalleryItemHover, hoveredImg);
-// });
-//
-// amazingWorkGallery.addEventListener("mouseout", function (event) {
-//     if (!hoveredImg) {
-//         return;
-//     }
-//
-//     let relatedTarget = event.relatedTarget;
-//     if (relatedTarget) {
-//         while (relatedTarget === workGalleryItemHover || relatedTarget.parentNode === workGalleryItemHover || relatedTarget.tagName === 'div' || relatedTarget.tagName === 'p') {
-//             break;
-//         }
-//     }
-//
-//     this.replaceChild(hoveredImg, workGalleryItemHover);
-//     hoveredImg = null;
-// });
+const workGalleryItemHover = document.createElement("div"),
+      galleryItemHoverLink = document.createElement("div"),
+      galleryItemHoverZoom = document.createElement("div"),
+      galleryItemHoverBoldText = document.createElement("p"),
+      galleryItemHoverText = document.createElement("p");
+
+workGalleryItemHover.classList.add("work-gallery-item-hover");
+galleryItemHoverLink.classList.add("gallery-item-hover-link");
+galleryItemHoverZoom.classList.add("gallery-item-hover-zoom");
+galleryItemHoverBoldText.classList.add("green-bold-text", "pad-t30-b12");
+galleryItemHoverBoldText.innerText = ("CREATIVE DESIGN");
+galleryItemHoverText.classList.add("gallery-item-hover-text");
+
+workGalleryItemHover.appendChild(galleryItemHoverLink);
+workGalleryItemHover.appendChild(galleryItemHoverZoom);
+workGalleryItemHover.appendChild(galleryItemHoverBoldText);
+workGalleryItemHover.appendChild(galleryItemHoverText);
+
+let hoveredImg = null;
+
+amazingWorkGallery.addEventListener("mouseover", function (event) {
+    if (hoveredImg) {
+        return;
+    }
+
+    hoveredImg = event.target;
+
+    galleryItemHoverText.innerText = hoveredImg.getAttribute("data-img");
+    this.replaceChild(workGalleryItemHover, hoveredImg);
+});
+
+amazingWorkGallery.addEventListener("mouseout", function (event) {
+    if (!hoveredImg) {
+        return;
+    }
+
+    let relatedTarget = event.relatedTarget;
+
+    if (relatedTarget !== workGalleryItemHover && relatedTarget.parentNode !== workGalleryItemHover) {
+        this.replaceChild(hoveredImg, workGalleryItemHover);
+        hoveredImg = null;
+    }
+});
 
 //Carousel
 const peopleSayCarousel = document.querySelector(".people-say-carousel"),
