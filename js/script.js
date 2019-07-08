@@ -175,6 +175,9 @@ amazingWorkGallery.addEventListener("mouseout", function (event) {
     }
 });
 
+/*
+ What People Say About theHam Section script
+ */
 //Carousel
 const peopleSayCarousel = document.querySelector(".people-say-carousel"),
       peopleSeyItem = document.querySelectorAll(".people-say-item");
