@@ -95,28 +95,38 @@ $loadMoreBtn.click(function () {
 });
 
 //Work Img hover listener
-// let $hoveredImg = null;
-//
-// $amazingWorkGallery.mouseover(function (event) {
-//     $hoveredImg = $(event.target);
-//     let dataImgAttrOfHoveredImg = $hoveredImg.attr("data-img"),
-//         workGalleryItemHover = `<div class="work-gallery-item-hover">` +
-//             `<div class="gallery-item-hover-link"></div>` +
-//             `<div class="gallery-item-hover-zoom"></div>` +
-//             `<p class="green-bold-text pad-t30-b12" >CREATIVE DESIGN</p>` +
-//             `<p class="gallery-item-hover-text">` + `${dataImgAttrOfHoveredImg}` + `</p>` +
-//             `</div>`;
-//     if ($hoveredImg.is(".work-gallery-item")) {
-//         $hoveredImg.replaceWith(workGalleryItemHover);
-//     }
-// });
-//
-// $amazingWorkGallery.mouseout(function (event) {
-//     let $relatedTarget = $(event.relatedTarget);
-//
-//     $(".work-gallery-item-hover").replaceWith($hoveredImg);
-//     $hoveredImg = null;
-// });
+let $hoveredImg = null;
+
+$amazingWorkGallery.mouseover(function (event) {
+    if ($hoveredImg) {
+        return;
+    }
+
+    $hoveredImg = $(event.target);
+    let dataImgAttrOfHoveredImg = $hoveredImg.attr("data-img"),
+        workGalleryItemHover = `<div class="work-gallery-item-hover">` +
+            `<div class="gallery-item-hover-link"></div>` +
+            `<div class="gallery-item-hover-zoom"></div>` +
+            `<p class="green-bold-text pad-t30-b12" >CREATIVE DESIGN</p>` +
+            `<p class="gallery-item-hover-text">` + `${dataImgAttrOfHoveredImg}` + `</p>` +
+            `</div>`;
+    if ($hoveredImg.is(".work-gallery-item")) {
+        $hoveredImg.replaceWith(workGalleryItemHover);
+    }
+});
+
+$amazingWorkGallery.mouseout(function (event) {
+    if (!$hoveredImg) {
+        return;
+    }
+
+    let $relatedTarget = $(event.relatedTarget);
+
+    if ($relatedTarget !== $(".work-gallery-item-hover") && $relatedTarget.parent() !== $(".work-gallery-item-hover")) {
+        $(".work-gallery-item-hover").replaceWith($hoveredImg);
+        $hoveredImg = null;
+    }
+});
 
 /*
  What People Say About theHam Section script
@@ -135,38 +145,45 @@ const clickOnCarouselButtons = ($button) => {
     }, 150)
 };
 
-$(".people-say-carousel").click(function (event) {
+const hideCarouselItem = () => {
+    $carouselActivePhoto.removeClass("carousel-active-photo");
+    $carouselActiveComment.fadeOut(500);
+};
+
+const showCarouselItem = () => {
+    $carouselActiveComment = $('.people-say-item[data-photo=' + '"' + $carouselActivePhoto.attr("data-photo") + '"' + ']');
+    $carouselActiveComment.delay(500).fadeIn(500);
+};
+
+$(".carousel-button").click(function (event) {
     if ($(event.target).hasClass("carousel-left-button")) {
         if ($carouselActivePhoto.prev() && $carouselActivePhoto.prev().hasClass("carousel-photo")) {
-            $carouselActivePhoto.removeClass("carousel-active-photo");
-            $carouselActiveComment.fadeOut("fast");
+            hideCarouselItem();
 
             $carouselActivePhoto.prev().addClass("carousel-active-photo");
             $carouselActivePhoto = $carouselActivePhoto.prev();
-            $('.people-say-item[data-photo='+ '"' + $carouselActivePhoto.attr("data-photo") + '"' + ']').fadeIn("slow");
+            showCarouselItem();
         }
         clickOnCarouselButtons($(event.target));
     }
 
     if ($(event.target).hasClass("carousel-right-button")) {
         if ($carouselActivePhoto.next() && $carouselActivePhoto.next().hasClass("carousel-photo")) {
-            $carouselActivePhoto.removeClass("carousel-active-photo");
-            $carouselActiveComment.fadeOut("fast");
+            hideCarouselItem();
 
-            $carouselActiveComment.next().addClass("carousel-active-photo");
-            $carouselActiveComment = $carouselActiveComment.next();
-            $('.people-say-item[data-photo=' + '"' + $carouselActivePhoto.attr("data-photo") + '"' + ']').fadeIn("slow");
+            $carouselActivePhoto.next().addClass("carousel-active-photo");
+            $carouselActivePhoto = $carouselActivePhoto.next();
+            showCarouselItem();
         }
         clickOnCarouselButtons($(event.target));
     }
+});
 
-    if ($(event.target).hasClass("carousel-photo")) {
-        $carouselActivePhoto.removeClass("carousel-active-photo");
-        $carouselActiveComment.fadeOut("fast");
+$(".carousel-photo").click(function (event) {
+    hideCarouselItem();
 
-        $(event.target).addClass("carousel-active-photo");
-        $carouselActivePhoto = $(event.target);
-        $('.people-say-item[data-photo=' + '"' + $carouselActivePhoto.attr("data-photo") + '"' + ']').fadeIn("slow");
-    }
+    $(event.target).addClass("carousel-active-photo");
+    $carouselActivePhoto = $(event.target);
+    showCarouselItem();
 });
 
