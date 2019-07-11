@@ -3,35 +3,40 @@
  */
 const ourServicesTabs = document.querySelector(".our-services-tabs");
 
-const addDataAtrToOurServicesTabs = () => {
-    const ourServicesTitles = document.querySelectorAll(".our-services-title");
-
-    ourServicesTitles.forEach((elem) => {
-        elem.setAttribute("data-content", `${elem.innerText.toLowerCase()}`)
-    });
+const addDataAtrToTabs = (tabsList, dataAtr) => {
+    tabsList.forEach((elem) => elem.setAttribute(dataAtr, `${elem.innerText.toLowerCase()}`))
 };
 
-addDataAtrToOurServicesTabs();
+const hideTabAndContent = (activeTab, tabsContentList, activeTabClass, dataAtr, event) => {
+    if (activeTab && activeTab !== event.target) {
+        activeTab.classList.remove(activeTabClass);
 
-//Services Tabs onclick listener
-let activeServiceTab;
-
-ourServicesTabs.onclick = (event) => {
-    const tabsItemsContent = document.querySelectorAll(".tabs-item-content");
-
-    if (activeServiceTab && activeServiceTab !== event.target) {
-        activeServiceTab.classList.remove('our-services-activetitle');
-
-        tabsItemsContent.forEach((elem) => {
-            if (activeServiceTab.getAttribute("data-content") === elem.getAttribute("data-content")) {
+        tabsContentList.forEach((elem) => {
+            if (event.target.getAttribute(dataAtr) !== elem.getAttribute(dataAtr) && elem.style.display !== "none") {
                 elem.style.display = "none";
             }
         })
     }
+};
 
-    event.target.classList.add('our-services-activetitle');
-    activeServiceTab = event.target;
+const makeTabActive = (activeTabClass, event) => {
+    event.target.classList.add(activeTabClass);
+    return event.target;
+};
 
+//Services Tabs onclick listener
+addDataAtrToTabs(document.querySelectorAll(".our-services-title"), "data-content");
+
+let activeServiceTab = document.querySelector(".our-services-title");
+activeServiceTab.classList.add('our-services-activetitle');
+
+const tabsItemsContent = document.querySelectorAll(".tabs-item-content");
+tabsItemsContent[0].style.display = "flex";
+
+ourServicesTabs.onclick = (event) => {
+    hideTabAndContent(activeServiceTab, tabsItemsContent, 'our-services-activetitle', "data-content", event);
+
+    activeServiceTab = makeTabActive('our-services-activetitle', event);
 
     tabsItemsContent.forEach((elem) => {
         if (activeServiceTab.getAttribute("data-content") === elem.getAttribute("data-content")) {
@@ -43,17 +48,9 @@ ourServicesTabs.onclick = (event) => {
 /*
  Our Amazing Work Section script
  */
+addDataAtrToTabs(document.querySelectorAll(".amazing-work-titles"), "data-img");
+
 const amazingWorkTabs = document.querySelector(".amazing-work-tabs");
-
-const addDataAtrToAmazingWorkTabs = () => {
-    const amazingWorkTitles = document.querySelectorAll(".amazing-work-titles");
-
-    amazingWorkTitles.forEach((elem) => {
-        elem.setAttribute("data-img", `${elem.innerText.toLowerCase()}`)
-    });
-};
-
-addDataAtrToAmazingWorkTabs();
 
 //Work Tabs onclick listener
 let activeWorkTab = document.querySelector(".amazing-work-titles[data-img='all']");
@@ -62,18 +59,9 @@ activeWorkTab.classList.add("amazing-work-activetitles");
 amazingWorkTabs.onclick = (event) => {
     const workGalleryItems = document.querySelectorAll(".work-gallery-item");
 
-    if (activeWorkTab && activeWorkTab !== event.target) {
-        activeWorkTab.classList.remove('amazing-work-activetitles');
+    hideTabAndContent(activeWorkTab, workGalleryItems, 'amazing-work-activetitles', "data-img", event);
 
-        workGalleryItems.forEach((elem) => {
-            if (elem.getAttribute("data-img") !== event.target.getAttribute("data-img") && elem.style.display !== "none") {
-                elem.style.display = "none";
-            }
-        });
-    }
-
-    event.target.classList.add('amazing-work-activetitles');
-    activeWorkTab = event.target;
+    activeWorkTab = makeTabActive('amazing-work-activetitles', event);
 
     workGalleryItems.forEach((elem) => {
         if (activeWorkTab.getAttribute("data-img") === elem.getAttribute("data-img") && elem.style.display !== "block") {
@@ -88,34 +76,28 @@ amazingWorkTabs.onclick = (event) => {
 const loadMoreBtn = document.querySelector(".load-more-btn"),
       amazingWorkGallery = document.querySelector(".amazing-work-gallery");
 
-loadMoreBtn.onclick = (event) => {
-    for (let i = 13; i < 25; i++) {
+loadMoreBtn.onclick = () => {
+    const additionImgAttributes = [{"src": "img/Amazing_work/amazing-work-13.png", "data-img": "wordpress"},
+                                   {"src": "img/Amazing_work/amazing-work-17.png", "data-img": "wordpress"},
+                                   {"src": "img/Amazing_work/amazing-work-23.png", "data-img": "wordpress"},
+                                   {"src": "img/Amazing_work/amazing-work-16.png", "data-img": "landing pages"},
+                                   {"src": "img/Amazing_work/amazing-work-21.png", "data-img": "landing pages"},
+                                   {"src": "img/Amazing_work/amazing-work-22.png", "data-img": "landing pages"},
+                                   {"src": "img/Amazing_work/amazing-work-15.png", "data-img": "web design"},
+                                   {"src": "img/Amazing_work/amazing-work-18.png", "data-img": "web design"},
+                                   {"src": "img/Amazing_work/amazing-work-19.png", "data-img": "web design"},
+                                   {"src": "img/Amazing_work/amazing-work-14.png", "data-img": "graphic design"},
+                                   {"src": "img/Amazing_work/amazing-work-20.png", "data-img": "graphic design"},
+                                   {"src": "img/Amazing_work/amazing-work-24.png", "data-img": "graphic design"}];
+
+    additionImgAttributes.forEach((elem) => {
         let img = document.createElement("img");
 
-        img.setAttribute("src", `img/Amazing_work/amazing-work-${i}.png`);
         img.setAttribute("alt", "amazing work img NOT FOUND");
         img.setAttribute("class", "work-gallery-item");
-        switch (i) {
-            case 13:
-            case 17:
-            case 23:
-                    img.setAttribute("data-img", "wordpress");
-                    break;
-            case 16:
-            case 21:
-            case 22:
-                    img.setAttribute("data-img", "landing pages");
-                    break;
-            case 15:
-            case 18:
-            case 19:
-                    img.setAttribute("data-img", "web design");
-                    break;
-            case 14:
-            case 20:
-            case 24:
-                    img.setAttribute("data-img", "graphic design");
-                    break;
+
+        for (let key in elem) {
+            img.setAttribute(key, elem[key]);
         }
 
         if (activeWorkTab.getAttribute("data-img") === "all" || activeWorkTab.getAttribute("data-img") === img.getAttribute("data-img")) {
@@ -125,29 +107,19 @@ loadMoreBtn.onclick = (event) => {
         }
 
         amazingWorkGallery.appendChild(img);
-    }
+    });
 
     loadMoreBtn.style.display = "none";
 };
 
 //Work Img hover listener
-const workGalleryItemHover = document.createElement("div"),
-      galleryItemHoverLink = document.createElement("div"),
-      galleryItemHoverZoom = document.createElement("div"),
-      galleryItemHoverBoldText = document.createElement("p"),
-      galleryItemHoverText = document.createElement("p");
+const workGalleryItemHover = document.createElement("div");
 
 workGalleryItemHover.classList.add("work-gallery-item-hover");
-galleryItemHoverLink.classList.add("gallery-item-hover-link");
-galleryItemHoverZoom.classList.add("gallery-item-hover-zoom");
-galleryItemHoverBoldText.classList.add("green-bold-text", "pad-t30-b12");
-galleryItemHoverBoldText.innerText = ("CREATIVE DESIGN");
-galleryItemHoverText.classList.add("gallery-item-hover-text");
-
-workGalleryItemHover.appendChild(galleryItemHoverLink);
-workGalleryItemHover.appendChild(galleryItemHoverZoom);
-workGalleryItemHover.appendChild(galleryItemHoverBoldText);
-workGalleryItemHover.appendChild(galleryItemHoverText);
+workGalleryItemHover.insertAdjacentHTML("afterBegin", '<div class="gallery-item-hover-link"></div>' +
+    '<div class="gallery-item-hover-zoom">' +
+    '</div><p class="green-bold-text pad-t30-b12">CREATIVE DESIGN</p>' +
+    '<p class="gallery-item-hover-text"></p>');
 
 let hoveredImg = null;
 
@@ -158,8 +130,8 @@ amazingWorkGallery.addEventListener("mouseover", function (event) {
 
     hoveredImg = event.target;
 
-    galleryItemHoverText.innerText = hoveredImg.getAttribute("data-img");
     this.replaceChild(workGalleryItemHover, hoveredImg);
+    document.querySelector(".gallery-item-hover-text").innerText = hoveredImg.getAttribute("data-img");
 });
 
 amazingWorkGallery.addEventListener("mouseout", function (event) {
@@ -181,6 +153,11 @@ amazingWorkGallery.addEventListener("mouseout", function (event) {
 //Carousel
 const peopleSayCarousel = document.querySelector(".people-say-carousel"),
       peopleSeyItem = document.querySelectorAll(".people-say-item");
+
+const carouselLeftButton = document.querySelector(".carousel-left-button"),
+    carouselRightButton = document.querySelector(".carousel-right-button");
+
+carouselLeftButton.style.display = "none";
 
 let carouselActivePhoto = document.querySelector(".carousel-photo"),
     carouselActiveComment = peopleSeyItem[0];
@@ -253,5 +230,17 @@ peopleSayCarousel.onclick = (event) => {
         event.target.classList.add("carousel-active-photo");
         carouselActivePhoto = event.target;
         showCarouselComment();
+    }
+
+    if (carouselActivePhoto.classList.contains("photo-1") && carouselLeftButton.style.display !== "none") {
+        carouselLeftButton.style.display = "none";
+    } else {
+        carouselLeftButton.style.display = "block";
+    }
+
+    if (carouselActivePhoto.classList.contains("photo-4") && carouselRightButton.style.display !== "none") {
+        carouselRightButton.style.display = "none";
+    } else {
+        carouselRightButton.style.display = "block";
     }
 };

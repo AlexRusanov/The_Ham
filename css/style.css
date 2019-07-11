@@ -5,7 +5,6 @@
 }
 
 .header-section {
-    height: 1012px;
     background: url("../img/Sections background/section-1(header).jpg") fixed no-repeat;
     -webkit-background-size: cover;
     background-size: cover;
@@ -28,20 +27,59 @@
 }
 
 .header {
-    background-image: url("../img/header-bg.png");
+    background-color: rgba(102, 101, 96, 0.8);
+}
+
+.header-logo {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.header-logo-hexagon {
+    position: relative;
+    width: 60px;
+    height: 34.64px;
+    background-color: #18cfab;
+    margin: 17.32px 8px 17.32px 0;
+    line-height: 34px;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.header-logo-hexagon:before,
+.header-logo-hexagon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+}
+
+.header-logo-hexagon:before {
+    bottom: 100%;
+    right: 0px;
+    border-bottom: 17.32px solid #18cfab;
+}
+
+.header-logo-hexagon:after {
+    top: 100%;
+    right: 0px;
+    width: 0;
+    border-top: 17.32px solid #18cfab;
 }
 
 .header-logo-text {
     font-size: 24px;
-    color: #fff;
 }
 
-.header-logo-text:before {
-    display: inline-block;
-    content: url("../img/logo/logo_icon.png");
-    vertical-align: middle;
-    margin-right: 8px;
-}
+/*.header-logo-text:before {*/
+    /*display: inline-block;*/
+    /*content: url("../img/logo/logo_icon.png");*/
+    /*vertical-align: middle;*/
+    /*margin-right: 8px;*/
+/*}*/
 
 .green-bold-text {
     font-weight: 700;
@@ -52,18 +90,29 @@
     width: 55%;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     font-size: 13px;
     font-weight: 700;
+    line-height: 120px;
+    color: #b8b8b8;
 }
 
 .nav-menu-item {
     color: #b8b8b8;
 }
 
+.nav-menu-item:hover {
+    border-bottom: 2px solid #18cfab;
+    color: #18cfab;
+}
+
+.section-below-header {
+    padding: 245px 0;
+}
+
 .header-section-wordpress-txt {
     font-size: 35px;
     font-weight: 700;
-    margin-top: 245px;
     margin-bottom: 45px;
 }
 
@@ -517,6 +566,7 @@
     height: 60px;
     border-radius: 50%;
     box-shadow: 0 0 5px 3px rgba(24,207,171,0.3);
+    cursor: pointer;
 }
 
 .carousel-photo.carousel-active-photo {
